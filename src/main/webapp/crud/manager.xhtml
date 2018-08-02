@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:jsf="http://xmlns.jcp.org/jsf"
-      xmlns:p="http://primefaces.org/ui">
-    <head>
-        <title>Cadastro de Gerentes</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/templates/default.xhtml">
+    <ui:define name="corpo">
         <div>
             <!-- Formulário para cadastro dos gerentes -->
             <h:form prependId="false">
@@ -23,27 +15,26 @@ and open the template in the editor.
                 <p>
                     <label>Nome:</label>
                     <br/>
-                    <p:inputText id="name" placeholder="Nome..." 
-                           value="#{manager.nome}" required="required"/>
+                    <p:inputText id="name" placeholder="Nome..." value="#{manager.nome}" required="required"/>
                     <!--input  id="name" value="# {manager.nome}"/ -->
                 </p>
                 <!-- Input do Id do gerente -->
                 <p>
                     <label>Id:</label>
                     <br/>
-                    <input type="text" jsf:id="id" name="id" value="#{manager.id}" required="required"/>
+                    <p:inputText type="text" id="id" value="#{manager.id}" required="required"/>
                 </p>
                 <!-- Input do Telefone do gerente -->
                 <p>
                     <label>Telefone:</label>
                     <br/>
-                    <input type="text" jsf:id="telefone" name="telefone" value="#{manager.telefone}" required="required"/>
+                    <p:inputText type="text" id="telefone" value="#{manager.telefone}" required="required"/>
                 </p>
                 <!-- Input do Endereço do gerente -->
                 <p>
                     <label>Endereço:</label>
                     <br/>
-                    <input type="text" jsf:id="endereco" name="endereco" value="#{manager.endereco}" required="required"/>
+                    <p:inputText type="text" id="endereco" value="#{manager.endereco}" required="required"/>
                 </p>
                 <!-- Button para salvar os dados do gerente -->
                 <p>
@@ -51,5 +42,5 @@ and open the template in the editor.
                 </p>
             </h:form>
         </div>
-    </body>
-</html>
+    </ui:define>
+</ui:composition>

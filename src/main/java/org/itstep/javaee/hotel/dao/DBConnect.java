@@ -14,7 +14,7 @@ public class DBConnect {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             cons = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/hotel?useTimezone=true&serverTimezone=UTC", "root", "root");
+                    "jdbc:mysql://localhost/hotel?useTimezone=true&serverTimezone=UTC", "root", "root");
         } catch (Exception e) {
             e.printStackTrace();
         }
