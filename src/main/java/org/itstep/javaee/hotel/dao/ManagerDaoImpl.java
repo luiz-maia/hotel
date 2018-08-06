@@ -31,7 +31,6 @@ public class ManagerDaoImpl implements ManagerDao {
     
     @Override
     public void create() {
-
         Connection con = DBConnect.getConnecttion();
         String sql = "insert into employee (id, name, telephone, address, role) value(?,?,?,?,?)";
 //import com.mysql.cj.jdbc.JdbcPreparedStatement;
@@ -70,5 +69,4 @@ public class ManagerDaoImpl implements ManagerDao {
     public Manager findById() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
 }
