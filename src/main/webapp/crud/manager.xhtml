@@ -9,39 +9,63 @@
     <ui:define name="corpo">
         <div>
             <!-- Formulário para cadastro dos gerentes -->
-            <h:form prependId="false">
-                <p>
-                    <label>Nome:</label>
-                    <br/>
-                    <p:inputText id="name" placeholder="Nome..." value="#{manager.nome}" required="required"/>
-                    <!--input  id="name" value="# {manager.nome}"/ -->
-                </p>
-                <!-- Input do Id do gerente -->
-                <p>
-                    <label>Id:</label>
-                    <br/>
-                    <p:inputText type="text" id="id" value="#{manager.id}" required="required"/>
-                </p>
-                <!-- Input do Telefone do gerente -->
-                <p>
-                    <label>Telefone:</label>
-                    <br/>
-                    <p:inputText type="text" id="telefone" value="#{manager.telefone}" required="required"/>
-                </p>
-                <!-- Input do Endereço do gerente -->
-                <p>
-                    <label>Endereço:</label>
-                    <br/>
-                    <p:inputText type="text" id="endereco" value="#{manager.endereco}" required="required"/>
-                </p>
-                <!-- Button para salvar os dados do gerente -->
-                <p>
-                    <h:commandButton value="Salvar" action="#{managerDao.create()}"/>
-                </p>
+            <h:form>
+                <p:growl id="growl" sticky="true" showDetail="true"/>
+                <p:wizard flowListener="#{managerView.onFlowProcess}">
+                    <p:tab id="personal" title="Pessoal">
+                        <p:panel header="Dados pessoais">
+                            <p:messages />
+                            <h:panelGrid columns="2" columnClasses="label, value">
+                                <h:outputText value="ID: *" />
+                                <p:inputText value="#{managerView.manager.id}" required="true" label="ID"/>
+                                <h:outputText value="Nome: *" />
+                                <p:inputText value="#{managerView.manager.nome}" required="true" label="Nome"/>
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:tab>
+                    <p:tab id="address" title="Endereço">
+                        <p:panel header="Residência">
+                            <p:messages />
+                            <h:panelGrid columns="2" columnClasses="label, value">
+                                <h:outputText value="Endereço: " />
+                                <p:inputText value="#{managerView.manager.endereco}" />
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:tab>
+                    <p:tab id="contact" title="Contato">
+                        <p:panel header="Telefone">
+                            <p:messages />
+                            <h:panelGrid columns="2" columnClasses="label, value">
+                                <h:outputText value="Telefone: " />
+                                <p:inputText value="#{managerView.manager.telefone}"/>
+                            </h:panelGrid>
+                        </p:panel>
+                    </p:tab>
+                    <p:tab id="confirm" title="Confirmation">
+                        <p:panel header="Confirmation">
+                            <h:panelGrid id="confirmation" columns="3" columnClasses="grid,grid,grid">
+                                <h:panelGrid columns="2" columnClasses="label, value">
+                                    <h:outputText value="ID: " />
+                                    <h:outputText value="#{managerView.manager.id}" styleClass="outputLabel"/>
+                                    <h:outputText value="Nome: " />
+                                    <h:outputText value="#{managerView.manager.nome}" styleClass="outputLabel"/>
+                                </h:panelGrid>
+                                <h:panelGrid columns="2" columnClasses="label, value">
+                                    <h:outputText value="Endereço: " />
+                                    <h:outputText value="#{managerView.manager.endereco}" styleClass="outputLabel"/>
+                                </h:panelGrid>
+                                <h:panelGrid columns="2" columnClasses="label, value">
+                                    <h:outputText value="Telefone: " />
+                                    <h:outputText value="#{managerView.manager.telefone}" styleClass="outputLabel"/>
+                                    <h:outputText />
+                                    <h:outputText />
+                                </h:panelGrid>
+                            </h:panelGrid>
+                            <p:commandButton value="Submit" actionListener="#{managerView.create}" update="growl" process="@this"/>
+                        </p:panel>
+                    </p:tab>
+                </p:wizard>
             </h:form>
-        </div>
-        <div>
-            
         </div>
     </ui:define>
 </ui:composition>

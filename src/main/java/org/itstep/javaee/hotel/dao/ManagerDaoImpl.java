@@ -25,12 +25,12 @@ public class ManagerDaoImpl implements ManagerDao {
 
     public ManagerDaoImpl() {
     }
-
+/*
     @Inject
     Manager manager;
-    
+*/    
     @Override
-    public void create() {
+    public void create(Manager manager) {
         Connection con = DBConnect.getConnecttion();
         String sql = "insert into employee (id, name, telephone, address, role) value(?,?,?,?,?)";
 //import com.mysql.cj.jdbc.JdbcPreparedStatement;

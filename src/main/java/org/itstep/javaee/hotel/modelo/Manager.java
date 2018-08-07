@@ -5,15 +5,15 @@
  */
 package org.itstep.javaee.hotel.modelo;
 
-import javax.inject.Named;
-import javax.enterprise.context.RequestScoped;
+//import javax.inject.Named;
+//import javax.enterprise.context.RequestScoped;
 
 /**
  *
  * @author Student
  */
-@Named(value = "manager")
-@RequestScoped
+//@Named(value = "manager")
+//@RequestScoped
 public class Manager {
 
     private String nome;
