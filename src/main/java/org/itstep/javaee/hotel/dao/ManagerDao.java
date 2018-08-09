@@ -16,7 +16,7 @@ public interface ManagerDao {
     
     public void create(Manager manager);
     public void update();
-    public void delete();
+    public void delete(Manager manager);
     public List<Manager> read();
     public Manager findById();
     

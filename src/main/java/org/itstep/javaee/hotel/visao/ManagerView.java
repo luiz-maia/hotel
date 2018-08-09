@@ -6,6 +6,7 @@
 package org.itstep.javaee.hotel.visao;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
@@ -27,6 +28,7 @@ public class ManagerView implements Serializable {
     ManagerDaoImpl managerDao;
 
     private Manager manager;
+    private List<Manager> managers;
     private boolean skip;
 
     /**
@@ -54,8 +56,23 @@ public class ManagerView implements Serializable {
 
     public void create() {
         managerDao.create(manager);
+        managers = null;
         FacesMessage msg = new FacesMessage("Successful", "Gravou :" + manager.getNome());
         FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+
+    public void delete(Manager manager) {
+        managerDao.delete(manager);
+        managers = null;
+        FacesMessage msg = new FacesMessage("Successful", "Excluiu :" + manager.getNome());
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+
+    public List<Manager> getManagers() {
+        if (managers == null) {
+            managers = managerDao.read();
+        }
+        return managers;
     }
 
     public String onFlowProcess(FlowEvent event) {

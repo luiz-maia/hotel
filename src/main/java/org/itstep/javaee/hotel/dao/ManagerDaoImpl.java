@@ -9,7 +9,10 @@ import java.sql.Connection;
 import java.util.List;
 import org.itstep.javaee.hotel.modelo.Manager;
 import com.mysql.cj.jdbc.JdbcPreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -25,10 +28,11 @@ public class ManagerDaoImpl implements ManagerDao {
 
     public ManagerDaoImpl() {
     }
-/*
+
+    /*
     @Inject
     Manager manager;
-*/    
+     */
     @Override
     public void create(Manager manager) {
         Connection con = DBConnect.getConnecttion();
@@ -56,13 +60,42 @@ public class ManagerDaoImpl implements ManagerDao {
     }
 
     @Override
-    public void delete() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void delete(Manager manager) {
+        Connection con = DBConnect.getConnecttion();
+        String sql = "delete employee where id = ?";
+        JdbcPreparedStatement ps;
+        try {
+            ps = (JdbcPreparedStatement) con.prepareStatement(sql);
+            ps.setInt(1, manager.getId());
+            int numLinhasExcluidas = ps.executeUpdate();
+            if (numLinhasExcluidas != 1)
+                throw new UnsupportedOperationException("Linha não excluída");
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new UnsupportedOperationException("Not supported yet. " + e.getMessage());
+        }
     }
 
     @Override
     public List<Manager> read() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        List<Manager> managers = new ArrayList<Manager>();
+        try {
+            Connection con = DBConnect.getConnecttion();
+            String sql = "select id, name, telephone, address from employee where role = " + EmployeeRole.MANAGER.ordinal();
+            Statement statement;
+            statement = con.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
+            ResultSet rs = statement.executeQuery(sql);
+            while (rs.next()) {
+                Manager manager = new Manager(rs.getString(2), rs.getInt(1), rs.getString(3), rs.getString(4));
+                managers.add(manager);
+            }
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new UnsupportedOperationException("Not supported yet. " + e.getMessage());
+        }
+        return managers;
     }
 
     @Override

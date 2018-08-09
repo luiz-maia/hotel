@@ -24,9 +24,12 @@ public class Manager {
     //Constructors
     public Manager() {
     }
-    
-    public void salvar(){
-       
+
+    public Manager(String nome, Integer id, String telefone, String endereco) {
+        this.nome = nome;
+        this.id = id;
+        this.telefone = telefone;
+        this.endereco = endereco;
     }
 
     //Getters & Setters
