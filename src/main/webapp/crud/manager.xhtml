@@ -83,7 +83,7 @@
                         <h:outputText value="#{elemento.endereco}" />
                     </p:column>
                     <p:column headerText="Excluir">  
-                        <p:commandButton id="excluir" value="Excluir" action="#{managerView.delete(elemento)}" update=":elemento :managers" />  
+                        <p:commandButton id="excluir" value="Excluir" action="#{managerView.delete(elemento)}" />  
                     </p:column>  
                 </p:dataTable>
             </h:form>

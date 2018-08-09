@@ -62,7 +62,7 @@ public class ManagerDaoImpl implements ManagerDao {
     @Override
     public void delete(Manager manager) {
         Connection con = DBConnect.getConnecttion();
-        String sql = "delete employee where id = ?";
+        String sql = "delete from employee where id = ?";
         JdbcPreparedStatement ps;
         try {
             ps = (JdbcPreparedStatement) con.prepareStatement(sql);
