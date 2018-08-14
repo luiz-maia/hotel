@@ -13,11 +13,9 @@ import org.itstep.javaee.hotel.modelo.Manager;
  * @author Admin
  */
 public interface ManagerDao {
-    
-    public void create(Manager manager);
-    public void update();
+    public Manager create(Manager manager);
+    public Manager update(Manager manager);
     public void delete(Manager manager);
     public List<Manager> read();
-    public Manager findById();
-    
+    public Manager findById(Integer id);
 }
