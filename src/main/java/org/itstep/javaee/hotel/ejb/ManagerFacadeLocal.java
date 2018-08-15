@@ -15,19 +15,11 @@ import org.itstep.javaee.hotel.modelo.Manager;
  */
 @Local
 public interface ManagerFacadeLocal {
-
     void create(Manager manager);
-
     void edit(Manager manager);
-
     void remove(Manager manager);
-
     Manager find(Object id);
-
     List<Manager> findAll();
-
     List<Manager> findRange(int[] range);
-
     int count();
-    
 }

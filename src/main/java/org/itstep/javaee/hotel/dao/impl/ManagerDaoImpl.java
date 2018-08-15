@@ -61,11 +61,14 @@ public class ManagerDaoImpl implements ManagerDao {
 
     @Override
     public Manager update(Manager manager) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        /* Faz uma atualização do manager. */
+        this.entityManager.getTransaction();
+        return entityManager.merge(manager);
     }
 
     @Override
     public void delete(Manager manager) {
+        this.entityManager.getTransaction();
         /* Verifica se ainda não está salvo no banco de dados. */
         if (manager.getId() == null) {
             /* Se o manager não está no estado managed verifica se ele existe na base. */
@@ -80,14 +83,13 @@ public class ManagerDaoImpl implements ManagerDao {
                 this.entityManager.remove(manager);
             }
         }
+        this.entityManager.getTransaction();
     }
 
     @Override
-    public List<Manager> read() {
-        List<Manager> managers = new ArrayList<Manager>();
-        /* Read no banco de dados. */
-        this.entityManager.find(Manager.class, null);
-        return managers;
+    public List<Manager> findAll() {
+        return entityManager.createNamedQuery("Manager.all", Manager.class).getResultList();
+//        return entityManager.createQuery("SELECT e FOM Empregado e", Manager.class).getResultList();
     }
 
     @Override

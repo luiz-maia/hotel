@@ -13,6 +13,7 @@ import javax.inject.Named;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import org.itstep.javaee.hotel.dao.impl.ManagerDaoImpl;
+import org.itstep.javaee.hotel.ejb.ManagerBO;
 import org.itstep.javaee.hotel.modelo.Manager;
 import org.primefaces.event.FlowEvent;
 
@@ -25,7 +26,7 @@ import org.primefaces.event.FlowEvent;
 public class ManagerView implements Serializable {
 
     @Inject
-    ManagerDaoImpl managerDao;
+    ManagerBO managerBO;
 
     private Manager manager;
     private List<Manager> managers;
@@ -55,14 +56,14 @@ public class ManagerView implements Serializable {
     }
 
     public void create() {
-        managerDao.create(manager);
+        managerBO.create(manager);
         managers = null;
         FacesMessage msg = new FacesMessage("Successful", "Gravou :" + manager.getNome());
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
     public void delete(Manager manager) {
-        managerDao.delete(manager);
+        managerBO.excluir(manager);
         managers = null;
         FacesMessage msg = new FacesMessage("Successful", "Excluiu :" + manager.getNome());
         FacesContext.getCurrentInstance().addMessage(null, msg);
@@ -70,7 +71,7 @@ public class ManagerView implements Serializable {
 
     public List<Manager> getManagers() {
         if (managers == null) {
-            managers = managerDao.read();
+            managers = managerBO.findByAll();
         }
         return managers;
     }

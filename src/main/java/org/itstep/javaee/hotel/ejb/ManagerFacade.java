@@ -17,7 +17,7 @@ import org.itstep.javaee.hotel.modelo.Manager;
 @Stateless
 public class ManagerFacade extends AbstractFacade<Manager> implements ManagerFacadeLocal {
 
-    @PersistenceContext(unitName = "org.itstep.javaee_hotel_war_1.0.0-SNAPSHOTPU")
+    @PersistenceContext(unitName = "hotelPU")
     private EntityManager em;
 
     @Override
@@ -28,5 +28,4 @@ public class ManagerFacade extends AbstractFacade<Manager> implements ManagerFac
     public ManagerFacade() {
         super(Manager.class);
     }
-    
 }

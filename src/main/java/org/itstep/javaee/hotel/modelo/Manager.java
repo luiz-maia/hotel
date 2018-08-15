@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -22,7 +24,10 @@ import javax.validation.constraints.Size;
  * @author Student
  */
 @Entity
-@Table(name = "manager")
+@NamedQueries({
+    @NamedQuery(name = "Manager.all", query = "SELECT e FROM Empregado e")
+})
+@Table(name = "empregado")
 public class Manager implements Serializable {
 
     private static final long serialVersionUID = 3508262578732194039L;
@@ -44,8 +49,13 @@ public class Manager implements Serializable {
     private String telefone;
 
     @Column(name = "endereco")
+    @NotNull(message = "Endereço não pode ser vazio")
     @Size(min = 1, max = 200, message = "Endereco deve conter entre 1 a 200 caracteres")
     private String endereco;
+
+    @Column(name = "cargo")
+    @NotNull(message = "Cargo não pode ser vazio")
+    private EmployeeRole cargo;
 
     //Constructors
     public Manager() {
@@ -56,6 +66,7 @@ public class Manager implements Serializable {
         this.nome = nome;
         this.telefone = telefone;
         this.endereco = endereco;
+        this.cargo = EmployeeRole.MANAGER;
     }
 
     //Getters & Setters
@@ -89,6 +100,14 @@ public class Manager implements Serializable {
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
+    }
+
+    public EmployeeRole getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(EmployeeRole cargo) {
+        this.cargo = cargo;
     }
 
     @Override

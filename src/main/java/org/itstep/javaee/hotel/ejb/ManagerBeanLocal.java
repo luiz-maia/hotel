@@ -5,7 +5,11 @@
  */
 package org.itstep.javaee.hotel.ejb;
 
+import java.util.List;
 import javax.ejb.Local;
+import org.itstep.javaee.hotel.dao.ManagerDao;
+import org.itstep.javaee.hotel.dao.impl.ManagerDaoImpl;
+import org.itstep.javaee.hotel.modelo.Manager;
 
 /**
  *
@@ -13,7 +17,9 @@ import javax.ejb.Local;
  */
 @Local
 public interface ManagerBeanLocal {
-    public Manager salvar(Manager manager) throws Exception;
-    public void excluir(Long id);
-    public Manager findById(Long id);
+    public Manager create(Manager manager);
+    public void excluir(Manager manager);
+    public Manager update(Manager manager);
+    public Manager findById(Integer id);
+    public List<Manager> findByAll();
 }

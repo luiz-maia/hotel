@@ -16,6 +16,6 @@ public interface ManagerDao {
     public Manager create(Manager manager);
     public Manager update(Manager manager);
     public void delete(Manager manager);
-    public List<Manager> read();
+    public List<Manager> findAll();
     public Manager findById(Integer id);
 }
