@@ -15,7 +15,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
-import org.itstep.javaee.hotel.dao.DBConnect;
 import org.itstep.javaee.hotel.dao.ManagerDao;
 import org.itstep.javaee.hotel.exception.BusinessException;
 import org.itstep.javaee.hotel.modelo.EmployeeRole;

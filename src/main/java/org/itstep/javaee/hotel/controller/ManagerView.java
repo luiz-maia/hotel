@@ -7,12 +7,11 @@ package org.itstep.javaee.hotel.controller;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
-import javax.inject.Inject;
-import org.itstep.javaee.hotel.dao.impl.ManagerDaoImpl;
 import org.itstep.javaee.hotel.ejb.ManagerBO;
 import org.itstep.javaee.hotel.modelo.Manager;
 import org.primefaces.event.FlowEvent;
@@ -25,7 +24,7 @@ import org.primefaces.event.FlowEvent;
 @ViewScoped
 public class ManagerView implements Serializable {
 
-    @Inject
+    @EJB
     ManagerBO managerBO;
 
     private Manager manager;

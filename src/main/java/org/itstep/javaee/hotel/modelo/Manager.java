@@ -25,9 +25,9 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "Manager.all", query = "SELECT e FROM Empregado e")
+    @NamedQuery(name = "Manager.all", query = "SELECT e FROM Manager e")
 })
-@Table(name = "empregado")
+@Table(name = "employee")
 public class Manager implements Serializable {
 
     private static final long serialVersionUID = 3508262578732194039L;
