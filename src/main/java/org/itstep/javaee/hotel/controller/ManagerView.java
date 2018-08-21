@@ -36,6 +36,7 @@ public class ManagerView implements Serializable {
      */
     public ManagerView() {
         manager = new Manager();
+        managers = null;
     }
 
     public Manager getManager() {

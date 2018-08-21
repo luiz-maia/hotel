@@ -18,11 +18,14 @@ import org.itstep.javaee.hotel.modelo.Manager;
  * @author Admin
  */
 @Stateless
-public class ManagerBO implements ManagerBeanLocal {
+public class ManagerBO implements ManagerBeanRemote {
 
     @PersistenceContext(unitName = "hotelPU")
     private EntityManager em;
 
+    public ManagerBO() {
+    }
+    
     public Manager create(Manager manager) {
         ManagerDao dao = new ManagerDaoImpl(em);
         return dao.create(manager);

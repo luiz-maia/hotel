@@ -6,17 +6,15 @@
 package org.itstep.javaee.hotel.ejb;
 
 import java.util.List;
-import javax.ejb.Local;
-import org.itstep.javaee.hotel.dao.ManagerDao;
-import org.itstep.javaee.hotel.dao.impl.ManagerDaoImpl;
+import javax.ejb.Remote;
 import org.itstep.javaee.hotel.modelo.Manager;
 
 /**
  *
  * @author Admin
  */
-@Local
-public interface ManagerBeanLocal {
+@Remote
+public interface ManagerBeanRemote {
     public Manager create(Manager manager);
     public void excluir(Manager manager);
     public Manager update(Manager manager);
